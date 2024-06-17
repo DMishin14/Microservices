@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+</head>
+
+<style>table {
+    border-spacing: 0 10px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+}
+th {
+    padding: 10px 20px;
+
+    border-right: 2px solid;
+    font-size: 0.9em;
+}
+th:first-child {
+    text-align: left;
+}
+th:last-child {
+    border-right: none;
+}
+td {
+    vertical-align: middle;
+    padding: 10px;
+    font-size: 14px;
+    text-align: center;
+    border-top: 2px solid;
+    border-bottom: 2px solid ;
+    border-right: 2px solid;
+}
+td:first-child {
+    border-left: 2px solid;
+    border-right: none;
+}
+td:nth-child(2){
+    text-align: left;
+}</style>
+
+<body>
+<table align="center" class="table_blur">
+    <tr>
+        <th colspan="6" text-align="center">VIEW USER</th>
+    </tr>
+    <tr>
+        <th>ID</th>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Возраст</th>
+        <th>     </th>
+    </tr>
+    <tr>
+        <td><p th:text="${user.getId()}">VALUE</p></td>
+        <td><p th:text="${user.getName()}">VALUE</p></td>
+        <td><p th:text="${user.getSurname()}">VALUE</p></td>
+        <td><p th:text="${user.getAge()}">VALUE</p></td>
+        <td><a th:href="@{/users/{id}/edit(id=${user.getId()})}">Изменить</a></td>
+    </tr>
+    <tr>
+        <td><form th:method="delete" th:action="@{/users/{id}(id=${user.getId()})}">
+            <input type="submit" value="УДАЛИТЬ"/>
+        </form></td>
+    </tr>
+</table>
+</body>
+</html>

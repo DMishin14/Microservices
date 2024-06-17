@@ -1,0 +1,7 @@
+ru\SpringCRUD\boot\dao\UserRepository.class
+ru\SpringCRUD\boot\controller\IndexController.class
+ru\SpringCRUD\boot\controller\UsersController.class
+ru\SpringCRUD\boot\SpringBootCrudApplication.class
+ru\SpringCRUD\boot\service\UserService.class
+ru\SpringCRUD\boot\model\User.class
+ru\SpringCRUD\boot\service\UserServiceImp.class
