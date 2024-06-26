@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<!-- Определение языка документа и пространства имен Thymeleaf -->
+<head>
+    <!-- Установка кодовой страницы в UTF-8 -->
+    <meta charset="UTF-8">
+    <!-- Задание заголовка документа -->
+    <title>Save user</title>
+</head>
+<body>
+<!-- Определение стилей для таблицы и ячеек -->
+<style>
+    table {
+        border-spacing: 0 10px;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: bold;
+    }
+
+    th {
+        padding: 10px 20px;
+        border-right: 2px solid;
+        font-size: 0.9em;
+    }
+
+    th:first-child {
+        text-align: left;
+    }
+
+    th:last-child {
+        border-right: none;
+    }
+
+    td {
+        vertical-align: middle;
+        padding: 10px;
+        font-size: 14px;
+        text-align: center;
+        border-top: 2px solid;
+        border-bottom: 2px solid ;
+        border-right: 2px solid;
+    }
+
+    td:first-child {
+        border-left: 2px solid;
+        border-right: none;
+    }
+
+    td:nth-child(2) {
+        text-align: left;
+    }
+</style>
+<!-- Форма для сохранения данных пользователя -->
+<form th:method="POST" th:action="@{/admin/user-save}" th:object="${user}">
+    <!-- Метка и поле ввода для имени пользователя -->
+    <label for="email">User name: </label>
+    <input type="text" th:field="*{username}" id="email">
+    <br>
+    <!-- Метка и поле ввода для фамилии пользователя -->
+    <label for="email">surname: </label>
+    <input type="text" th:field="*{surname}" id="surname">
+    <br>
+    <!-- Метка и поле ввода для возраста пользователя -->
+    <label for="email">age: </label>
+    <input type="text" th:field="*{age}" id="age">
+    <br>
+    <!-- Метка и поле ввода для пароля пользователя -->
+    <label for="password">Password: </label>
+    <input type="text" th:field="*{password}" id="password">
+    <br>
+    <!-- Выбор ролей пользователя -->
+    <select name="nameRoles" multiple size="2">
+        <option th:each="role : ${roles}"
+                th:value="${role.name}"
+                th:text="${role.getName()}">
+        </option>
+    </select>
+    <br>
+    <!-- Кнопка отправки формы -->
+    <input type="submit" value="Создать">
+</form>
+</body>
+</html>

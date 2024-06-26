@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org"> <!-- Объявление документа и указание языка страницы, а также пространства имен Thymeleaf -->
+
+<head>
+    <meta charset="UTF-8"/> <!-- Указание кодовой страницы -->
+    <title>All users</title> <!-- Заголовок окна браузера -->
+</head>
+<body>
+<!-- Стили для таблицы пользователей -->
+<style>
+    table {
+        border-spacing: 0 10px; /* Отступы между ячейками */
+        font-family: 'Open Sans', sans-serif; /* Шрифт */
+        font-weight: bold; /* Жирный текст заголовков */
+    }
+
+    th { /* Стили для заголовков таблицы */
+        padding: 10px 20px; /* Внутренние отступы */
+        border-right: 2px solid; /* Правая граница */
+        font-size: 0.9em; /* Размер шрифта */
+    }
+
+    th:first-child { /* Первый заголовок (левый) выравнивается по левому краю */
+        text-align: left;
+    }
+
+    th:last-child { /* Последний заголовок не имеет правой границы */
+        border-right: none;
+    }
+
+    td { /* Стили для ячеек таблицы */
+        vertical-align: middle; /* Выравнивание содержимого по вертикали в центре */
+        padding: 10px; /* Внутренние отступы */
+        font-size: 14px; /* Размер шрифта */
+        text-align: center; /* Выравнивание текста по центру */
+        border-top: 2px solid ; /* Верхняя граница */
+        border-bottom: 2px solid ; /* Нижняя граница */
+        border-right: 2px solid ; /* Правая граница */
+    }
+
+    td:first-child { /* Первая ячейка каждого ряда не имеет правой границы */
+        border-left: 2px solid ; /* Левая граница */
+        border-right: none;
+    }
+
+    td:nth-child(2) { /* Вторая ячейка выравнивается по левому краю */
+        text-align: left;
+    }
+</style>
+
+<!-- Таблица с данными пользователей -->
+<table>
+    <thead> <!-- Заголовки таблицы -->
+    <tr>
+        <th>User name</th> <!-- Имя пользователя -->
+        <th>surname</th> <!-- Фамилия -->
+        <th>age</th> <!-- Возраст -->
+        <th>Role</th> <!-- Роль -->
+        <th>Operations</th> <!-- Операции -->
+    </tr>
+    </thead>
+    <tbody> <!-- Тело таблицы -->
+    <tr th:each="user : ${oneUser}"> <!-- Цикл по пользователям -->
+        <td th:text="${user.username}"></td> <!-- Имя пользователя -->
+        <td th:text="${user.surname}"></td> <!-- Фамилия пользователя -->
+        <td th:text="${user.age}"></td> <!-- Возраст пользователя -->
+        <td> <!-- Роль пользователя -->
+            <span th:each="role : ${user.getRoles()}">
+            <span th:text="${role.getName()}"></span>
+        </span>
+        </td>
+        <td> <!-- Операции над пользователем -->
+            <a th:href="@{user/user-update/{id}(id=${user.id})}">
+                <input type="submit" value="Обновить"/>
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<!-- Ссылка для выхода из системы -->
+<a th:href="@{/login}">
+    <input type="submit" value="Выход"/>
+</a>
+</body>
+</html>

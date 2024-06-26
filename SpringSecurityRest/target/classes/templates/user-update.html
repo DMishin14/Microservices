@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml"> <!-- Объявление документа и указание языка страницы, а также пространства имен Thymeleaf -->
+
+<head>
+    <meta charset="UTF-8"/> <!-- Указание кодовой страницы -->
+    <title>Update users</title> <!-- Заголовок окна браузера -->
+</head>
+<body>
+<!-- Стили для формы обновления данных пользователя -->
+<style>
+    table {
+        border-spacing: 0 10px; /* Отступы между ячейками */
+        font-family: 'Open Sans', sans-serif; /* Шрифт */
+        font-weight: bold; /* Жирный текст заголовков */
+    }
+
+    th { /* Стили для заголовков таблицы */
+        padding: 10px 20px; /* Внутренние отступы */
+        border-right: 2px solid; /* Правая граница */
+        font-size: 0.9em; /* Размер шрифта */
+    }
+
+    th:first-child { /* Первый заголовок (левый) выравнивается по левому краю */
+        text-align: left;
+    }
+
+    th:last-child { /* Последний заголовок не имеет правой границы */
+        border-right: none;
+    }
+
+    td { /* Стили для ячеек таблицы */
+        vertical-align: middle; /* Выравнивание содержимого по вертикали в центре */
+        padding: 10px; /* Внутренние отступы */
+        font-size: 14px; /* Размер шрифта */
+        text-align: center; /* Выравнивание текста по центру */
+        border-top: 2px solid ; /* Верхняя граница */
+        border-bottom: 2px solid ; /* Нижняя граница */
+        border-right: 2px solid ; /* Правая граница */
+    }
+
+    td:first-child { /* Первая ячейка каждого ряда не имеет правой границы */
+        border-left: 2px solid ; /* Левая граница */
+        border-right: none;
+    }
+
+    td:nth-child(2) { /* Вторая ячейка выравнивается по левому краю */
+        text-align: left;
+    }
+</style>
+
+<!-- Форма для обновления данных пользователя -->
+<form action="#" th:action="@{/user/user-update}" th:object="${user}" method="post">
+    <label for="id">ID</label> <!-- Метка для поля ID -->
+    <input readonly type="number" th:field="*{id}" id="id" placeholder="ID"> <!-- Чтение только, поле ID -->
+    <br/>
+    <label for="username">User name</label> <!-- Метка для имени пользователя -->
+    <input type="text" th:field="*{username}" id="username" placeholder="username"> <!-- Поле ввода имени пользователя -->
+    <br/>
+    <br>
+    <label for="surname">Surname:</label> <!-- Метка для фамилии -->
+    <input type="text" th:field="*{surname}" id="surname"> <!-- Поле ввода фамилии -->
+    <br>
+    <label for="age">Age:</label> <!-- Метка для возраста -->
+    <input type="text" th:field="*{age}" id="age"> <!-- Поле ввода возраста -->
+    <br>
+    <label for="password">Password</label> <!-- Метка для пароля -->
+    <input type="password" th:field="*{password}" id="password" placeholder="password"> <!-- Поле ввода пароля -->
+    <br/>
+    <input type="submit" value="Обновить"> <!-- Кнопка отправки формы -->
+</form>
+</body>
+</html>

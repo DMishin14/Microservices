@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<!-- Определение языка документа и пространства имен Thymeleaf -->
+<head>
+    <!-- Установка кодовой страницы в UTF-8 -->
+    <meta charset="UTF-8">
+    <!-- Задание заголовка документа -->
+    <title>Update employee</title>
+</head>
+<body>
+<!-- Определение стилей для таблицы и ячеек -->
+<style>
+    table {
+        border-spacing: 0 10px;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: bold;
+    }
+
+    th {
+        padding: 10px 20px;
+        border-right: 2px solid;
+        font-size: 0.9em;
+    }
+
+    th:first-child {
+        text-align: left;
+    }
+
+    th:last-child {
+        border-right: none;
+    }
+
+    td {
+        vertical-align: middle;
+        padding: 10px;
+        font-size: 14px;
+        text-align: center;
+        border-top: 2px solid ;
+        border-bottom: 2px solid ;
+        border-right: 2px solid;
+    }
+
+    td:first-child {
+        border-left: 2px solid ;
+        border-right: none;
+    }
+
+    td:nth-child(2) {
+        text-align: left;
+    }
+</style>
+<!-- Форма для обновления данных сотрудника -->
+<form action="#" th:action="@{/admin/user-update}" th:object="${user}" method="post">
+    <!-- Метка и поле ввода для ID сотрудника (только для чтения) -->
+    <label for="id">ID</label>
+    <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
+    <br/>
+    <!-- Метка и поле ввода для имени пользователя -->
+    <label for="username">User name</label>
+    <input type="text" th:field="*{username}" id="username" placeholder="username">
+    <br/>
+    <!-- Метка и поле ввода для фамилии сотрудника -->
+    <label for="username">surname</label>
+    <input type="text" th:field="*{surname}" id="surname" placeholder="surname">
+    <br/>
+    <!-- Метка и поле ввода для возраста сотрудника -->
+    <label for="username">age</label>
+    <input type="text" th:field="*{age}" id="age" placeholder="age">
+    <br/>
+    <!-- Метка и поле ввода для пароля сотрудника -->
+    <label for="password">Password</label>
+    <input type="password" th:field="*{password}" id="password" placeholder="password">
+    <br/>
+    <!-- Выбор ролей сотрудника -->
+    <select name="nameRoles" multiple size="2">
+        <option th:each="role : ${roles}"
+                th:value="${role.name}"
+                th:text="${role.getName()}">
+        </option>
+    </select>
+    <br>
+    <!-- Кнопка отправки формы для обновления данных сотрудника -->
+    <input type="submit" value="Обновить">
+</form>
+</body>
+</html>
